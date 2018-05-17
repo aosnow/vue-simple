@@ -19,7 +19,7 @@ export default [
     interceptor(response) {
       console.warn('response.interceptor:', response);
 
-      if (parseInt(response.data.code, 10) === 40003) {
+      if (response.data && parseInt(response.data.code, 10) === 40003) {
         router.push({ path: '/login' });
       }
 

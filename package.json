@@ -1,6 +1,6 @@
 {
   "name": "vue-simple",
-  "version": "1.1.13",
+  "version": "1.1.15",
   "description": "Use Vue in the simplest and easiest way, contain more than one of plugins and other to do that, i hope you will like it.",
   "main": "./lib/index.js",
   "scripts": {
@@ -13,6 +13,13 @@
   },
   "author": "aosnow@yeah.net（The silver box technology Co. Ltd.）",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aosnow/vue-simple"
+  },
+  "bugs": {
+    "url": "https://github.com/aosnow/vue-simple/issues"
+  },
   "files": [
     "lib",
     "packages",

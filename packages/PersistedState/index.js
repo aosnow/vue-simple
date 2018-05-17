@@ -142,4 +142,14 @@ const PersistedPlugin = store => {
   });
 };
 
-export { PersistedState, PersistedAction, PersistedPlugin, PersistedConfig, STORAGE_TYPE };
+/**
+ * 持久化数据清除器
+ */
+const PersistedClear = {
+  remove(type) {
+    const conf = PersistedConfig[type];
+    $persistedState.removeState(conf.type, conf.storage);
+  }
+};
+
+export { PersistedState, PersistedClear, PersistedAction, PersistedPlugin, PersistedConfig, STORAGE_TYPE };

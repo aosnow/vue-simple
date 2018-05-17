@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Info from './info';
-import { PersistedPlugin } from '../../packages/plugins/PersistedState';
+import { PersistedPlugin } from '../../packages/PersistedState';
 
 Vue.use(Vuex);
 

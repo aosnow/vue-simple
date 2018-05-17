@@ -32,41 +32,45 @@ class Api {
   /**
    * 通过 get 方式请求数据
    * @param {string|{ getway:string, api: string }} url 请求地址参数；getway为网关名称，api为接口名（查看后端接口文档列表）
-   * @param data 需要提交的参数数据
+   * @param {Object} data 需要提交的参数数据
+   * @param {Object} [conf] 附加配置参数（可覆盖默认配置，如覆盖 responseType）
    * @returns {Promise}
    */
-  get(url, data = null) {
-    return this.request({ method: 'get', url, params: data });
+  get(url, data = null, conf = null) {
+    return this.request({ method: 'get', url, params: data, ...conf });
   }
 
   /**
    * 通过 delete 方式请求数据
    * @param {string|{ getway:string, api: string }} url 请求地址参数；getway为网关名称，api为接口名（查看后端接口文档列表）
-   * @param data 需要提交的参数数据
+   * @param {Object} data 需要提交的参数数据
+   * @param {Object} [conf] 附加配置参数（可覆盖默认配置，如覆盖 responseType）
    * @returns {Promise}
    */
-  delete(url, data = null) {
-    return this.request({ method: 'delete', url, params: data });
+  delete(url, data = null, conf = null) {
+    return this.request({ method: 'delete', url, params: data, ...conf });
   }
 
   /**
    * 通过 get 方式提交参数并请求数据
    * @param {string|{ getway:string, api: string }} url 请求地址参数；getway为网关名称，api为接口名（查看后端接口文档列表）
-   * @param data 需要提交的参数数据
+   * @param {Object} data 需要提交的参数数据
+   * @param {Object} [conf] 附加配置参数（可覆盖默认配置，如覆盖 responseType）
    * @returns {Promise}
    */
-  post(url, data = null) {
-    return this.request({ method: 'post', url, data });
+  post(url, data = null, conf = null) {
+    return this.request({ method: 'post', url, data, ...conf });
   }
 
   /**
    * 通过 put 方式提交参数并请求数据
    * @param {string|{ getway:string, api: string }} url 请求地址参数；getway为网关名称，api为接口名（查看后端接口文档列表）
-   * @param data 需要提交的参数数据
+   * @param {Object} data 需要提交的参数数据
+   * @param {Object} [conf] 附加配置参数（可覆盖默认配置，如覆盖 responseType）
    * @returns {Promise}
    */
-  put(url, data = null) {
-    return this.request({ method: 'put', url, data });
+  put(url, data = null, conf = null) {
+    return this.request({ method: 'put', url, data, ...conf });
   }
 
   /**

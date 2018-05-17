@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { PersistedAction, PersistedConfig, STORAGE_TYPE } from '../../packages/plugins/PersistedState';
+import { PersistedAction, PersistedConfig, STORAGE_TYPE } from '../../packages/PersistedState';
 
 // 注册需要缓存的 mutation
 // PersistedConfig.add({ type: 'info/save', storage: STORAGE_TYPE.sessionStorage });
@@ -8,7 +8,8 @@ PersistedConfig.batch([
 ]);
 
 const State = {
-  dataset: null
+  dataset: null,
+  excel: null
 };
 
 // 同步立即更新
@@ -21,6 +22,10 @@ const MutAtions = {
     state.dataset = data;
     // Vue.set(state, 'dataset', data);
     // console.warn(state.dataset);
+  },
+  setExcel(state, params) {
+    const { data } = params;
+    state.excel = data;
   }
 };
 
@@ -30,6 +35,7 @@ const Actions = {
   /**
    * 初始化请求权限配置数据
    * @param commit 派发同步操作的方法，指向到 MutActions
+   * @param data
    */
   fetch({ dispatch }, data) {
     return dispatch('persist', {
@@ -56,6 +62,15 @@ const Actions = {
           });
         });
       }
+    });
+  },
+  excel({ commit }, params) {
+    return new Promise((resolve, reject) => {
+      Vue.$api.post('/category/exportCategory', params, { responseType: 'blob' }).then(res => {
+        resolve(res);
+      }).catch(reason => {
+        reject(reason);
+      });
     });
   }
 };
