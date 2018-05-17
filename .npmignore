@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+# 排除所有内容
+*
+
+# 将需要上传的 npm 的内容进行例外处理
+!/lib/
+!/packages/
+!/types/
+!/package.json
+!/LICENSE
+!/README.md
