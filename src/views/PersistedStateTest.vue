@@ -24,6 +24,8 @@ export default {
       console.warn('request start:....');
       this.$store.dispatch('info/fetch', { a: 0, b: 1 }).then(data => {
         console.warn(data.data);
+      }).catch(reason => {
+        console.warn(reason);
       });
     }
   }

@@ -87,6 +87,8 @@ module.exports = {
     // 当存在更简单的三元运算写法时，是否简化如：“x ? x : ''”开启时需要简化为 “x || ''”
     'no-unneeded-ternary': ['error', { 'defaultAssignment': true }],
     // 属性访问时用 . 还是 []，允许关键字
-    'dot-notation': 'off'
+    'dot-notation': 'off',
+    // 是否强制要求函数统一 return value 格式
+    'consistent-return': 'off'
   }
 };

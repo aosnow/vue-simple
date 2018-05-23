@@ -7,7 +7,7 @@
 //
 // ------------------------------------------------------------------------------
 
-export declare interface StateStorage
+declare interface StateStorage
 {
   type:string;
   storage:Storage | Map;
@@ -37,3 +37,5 @@ export declare interface StateStorage
    */
   setItem( key:string, data:string ):void;
 }
+
+export default StateStorage;

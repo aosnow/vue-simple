@@ -1,6 +1,6 @@
 {
   "name": "vue-simple",
-  "version": "1.1.15",
+  "version": "1.1.20",
   "description": "Use Vue in the simplest and easiest way, contain more than one of plugins and other to do that, i hope you will like it.",
   "main": "./lib/index.js",
   "scripts": {
@@ -75,6 +75,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
+    "gulp-clean": "^0.4.0",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.0.2",
     "less-loader": "^4.1.0",

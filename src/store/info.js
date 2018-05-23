@@ -66,7 +66,14 @@ const Actions = {
   },
   excel({ commit }, params) {
     return new Promise((resolve, reject) => {
-      Vue.$api.post('/category/exportCategory', params, { responseType: 'blob' }).then(res => {
+      Vue.$api.post('goods/category/exportCategory', params, {
+        responseType: 'blob',
+        headers: {
+          token: '77c76ccb-fc91-4476-9328-54c1cebc39ea', // 不用更换，不过期 token
+          invoke_source: 2101,
+          out_request_no: '656h754667j4'
+        }
+      }).then(res => {
         resolve(res);
       }).catch(reason => {
         reject(reason);

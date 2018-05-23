@@ -94,6 +94,9 @@ const PersistedAction = ({ commit }, { type, getData, force }) =>
 
     // 尝试取缓存数据
     let cacheData = $persistedState.getState(conf.type, conf.storage);
+
+    // 由于 PersistedAction 挂载于 store 内部，因此在 dispatch/commit 等时刻，不需要再加 模块前缀
+    // 此处目的在于分解模块名和 type 名，进行后续内部操作
     const types = parseType(conf.type);
 
     // 检测数据缓存是否过期
@@ -152,4 +155,39 @@ const PersistedClear = {
   }
 };
 
-export { PersistedState, PersistedClear, PersistedAction, PersistedPlugin, PersistedConfig, STORAGE_TYPE };
+/**
+ * 主动恢复持久化数据到 vuex
+ * <p>前提：必须先定义 vuex，且使用 PersistedConfig 进行注册缓存的 mutation 配置。</p>
+ */
+const PersistedRestore = {
+  restore(store, type) {
+    const conf = PersistedConfig[type];
+
+    // 尝试取缓存数据
+    let cacheData = $persistedState.getState(conf.type, conf.storage);
+
+    // 检测数据缓存是否过期
+    // 如果之前存放数据时设置了时间戳，且配置了过期时间，则检测过期逻辑
+    if (cacheData && cacheData.timestamp &&
+        typeof conf.expire === 'number' && conf.expire > 0 &&
+        expired(cacheData.timestamp, conf.expire)) {
+      $persistedState.removeState(conf.type, conf.storage);
+      cacheData = null;
+    }
+
+    if (cacheData) {
+      console.warn('使用缓存数据进行主动恢复 commit.', cacheData.payload);
+      store.commit(conf.type, cacheData.payload);
+    }
+  }
+};
+
+export {
+  PersistedState,
+  PersistedClear,
+  PersistedRestore,
+  PersistedAction,
+  PersistedPlugin,
+  PersistedConfig,
+  STORAGE_TYPE
+};

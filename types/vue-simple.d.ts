@@ -1,9 +1,9 @@
-import { Api, ApiInstaller } from './Api';
-import { Interceptor, InterceptorType, DefaultError } from './interceptor';
-import hashCode from './hashCode';
+import hashCode from './utils/hashCode';
 
-export {
-  Api, ApiInstaller,
-  Interceptor, InterceptorType, DefaultError,
-  hashCode
-};
+export { Api, ApiInstaller } from './api/Api';
+export { Interceptor, DefaultError } from './api/interceptor';
+export { PersistedState, PersistedClear, PersistedRestore, PersistedAction, PersistedPlugin, PersistedConfig, STORAGE_TYPE } from './PersistedState';
+export { MIME, BlobFile, Endings } from './BlobFile';
+export { objectIndexOf, objectLastIndexOf } from './utils/object';
+
+export { hashCode };

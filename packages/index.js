@@ -1,28 +1,9 @@
-import { Api, ApiInstaller } from './api/Api';
-import { Interceptor, DefaultError } from './api/interceptor';
 import hashCode from './utils/hashCode';
-import { PersistedState, PersistedAction, PersistedPlugin, PersistedConfig, STORAGE_TYPE } from './PersistedState';
-import { MIME, BlobFile, Endings } from './file';
 
-export {
-  // API 通信
-  Api,
-  ApiInstaller,
-  Interceptor,
-  DefaultError,
+export { Api, ApiInstaller } from './api/Api';
+export { Interceptor, DefaultError } from './api/interceptor';
+export { PersistedState, PersistedClear, PersistedRestore, PersistedAction, PersistedPlugin, PersistedConfig, STORAGE_TYPE } from './PersistedState';
+export { MIME, BlobFile, Endings } from './BlobFile';
+export { objectIndexOf, objectLastIndexOf } from './utils/object';
 
-  // Hash 工具
-  hashCode,
-
-  // 持久化状态
-  PersistedState,
-  PersistedAction,
-  PersistedPlugin,
-  PersistedConfig,
-  STORAGE_TYPE,
-
-  // Excel 和文件相关
-  MIME,
-  BlobFile,
-  Endings
-};
+export { hashCode };

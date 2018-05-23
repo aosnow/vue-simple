@@ -19,7 +19,7 @@ class PersistedState {
 
   /**
    * 构建实例
-   * @param {{expire:Number, store:Vuex, storage?:StateStorage}} [options] 全局配置，可通过私有配置进行覆盖
+   * @param {{store:Vuex, expire:Number, storage?:StateStorage}} [options] 全局配置，可通过私有配置进行覆盖
    */
   constructor(options) {
     this._options = merge({}, this._defaultOptions, options);
