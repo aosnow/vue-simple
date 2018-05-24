@@ -4,13 +4,11 @@
 ---------------------------------------------------->
 <template>
   <div class="hello">
-    {{msg}}
+    <button @click="handler">点击发送新的 Axios 请求</button>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
-
 export default {
   name: 'AxiosTest',
   data() {
@@ -18,11 +16,18 @@ export default {
       msg: 'XXX项目 - AxiosTest.vue'
     };
   },
-  created() {
-    console.warn('request start:....');
-    Vue.$api.post('/user/login', { username: '10000', password: '123456', type: 'EMPLOYEE' }).then(response => {
-      console.warn(response.data);
-    });
+  methods: {
+    handler() {
+      console.warn('request start:....');
+      this.$store.dispatch('info/fetch').then(response => {
+        console.warn('success:', response, response ? response.data : null);
+      }).catch(error => {
+        console.warn('Axios Post Error:', error, typeof error);
+        Object.keys(error).forEach(key => {
+          console.warn(key, error[key]);
+        });
+      });
+    }
   }
 };
 </script>

@@ -13,3 +13,5 @@ declare function objectIndexOf( src:any, search:any ):{ key:string, value:any };
  * @returns {{key:String,value:*}|null}
  */
 declare function objectLastIndexOf( src:any, search:any ):{ key:string, value:any };
+
+export { objectIndexOf, objectLastIndexOf };

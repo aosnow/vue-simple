@@ -104,18 +104,23 @@ const PersistedAction = ({ commit }, { type, getData, force }) =>
     if (cacheData && cacheData.timestamp &&
         typeof conf.expire === 'number' && conf.expire > 0 &&
         expired(cacheData.timestamp, conf.expire)) {
+      // 移除缓存数据
       $persistedState.removeState(conf.type, conf.storage);
+
+      // 清除临时数据，阻止使用缓存数据
       cacheData = null;
     }
 
+    // conf.expire 为 0 或未设置值，缓存将永久性不过期
+
     if (cacheData && !force) {
-      console.warn('使用缓存数据进行 commit.', cacheData.payload);
+      // console.warn('使用缓存数据进行 commit.', cacheData.payload);
       commit(types.type, cacheData.payload);
       resolve(cacheData.payload);
     }
     else {
       getData().then(data => {
-        console.warn('请求远程数据进行 commit.', data);
+        // console.warn('请求远程数据进行 commit.', data);
         commit(types.type, data);
         resolve(data);
       }).catch(error => {

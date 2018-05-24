@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import hashCode from '../utils/hashCode';
+import { hash } from '../utils/hash';
 import { Interceptor } from './interceptor';
 
 class Api {
@@ -109,7 +109,7 @@ class Api {
     // 通过URL附加参数禁用浏览器缓存特性
     if (this._conf['noCache']) {
       conf.params = conf.params || {};
-      conf.params['timestamp'] = `?${hashCode()}`;
+      conf.params['timestamp'] = `?${hash()}`;
     }
 
     // 统一请求 API 接口提交数据结构规范（只处理 POST，GET 交给 params）
@@ -125,12 +125,29 @@ class Api {
     // token 验证串
     this._axios.defaults.headers['token'] = this.token || sessionStorage.getItem('token');
     this._axios.defaults.headers['invoke_source'] = this._conf.srv.invoke_source;
-    this._axios.defaults.headers['out_request_no'] = Api.hash();
+    this._axios.defaults.headers['out_request_no'] = hash();
 
-    return this._axios.request({
-      method: conf.method,
-      url: conf.url,
-      ...conf
+    // return this._axios.request({
+    //   method: conf.method,
+    //   url: conf.url,
+    //   ...conf
+    // });
+    return new Promise((resolve, reject) => {
+      this._axios.request({
+        method: conf.method,
+        url: conf.url,
+        ...conf
+      }).then(response => {
+        if (response && response.data) {
+          resolve(response);
+        }
+        else {
+          // 若使用 response 拦截器 return 的结果为有效值，如 Error 对象，则抛出给 catch() 分支进行捕获
+          (response !== undefined && response !== null) && reject(response);
+        }
+      }).catch(error => {
+        reject(error);
+      });
     });
   }
 
@@ -195,23 +212,6 @@ class Api {
   static slash(url) {
     // 首字符必须以“/”开头
     return `/${url}`.replace(/^[/]{2,}/i, '/');
-  }
-
-  /**
-   * 生成请求时所需唯一标识码（out_request_no）
-   * @returns {string}
-   */
-  static hash() {
-    const date = new Date();
-    const p = {
-      y: date.getFullYear(),
-      m: `0${date.getMonth() + 1}`.substr(-2),
-      d: `0${date.getDate()}`.substr(-2),
-      h: `0${date.getHours()}`.substr(-2),
-      i: `0${date.getMinutes()}`.substr(-2),
-      s: `0${date.getSeconds()}`.substr(-2)
-    };
-    return `${p.y}${p.m}${p.d}${p.h}${p.i}${p.s}${hashCode()}`;
   }
 }
 

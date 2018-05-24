@@ -1,6 +1,6 @@
 const I64BIT_TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('');
 
-function hashCode(input) {
+function hash(input) {
   let hv = 0;
   let src = input;
   let i = 0;
@@ -23,4 +23,21 @@ function hashCode(input) {
   return retValue;
 }
 
-export default hashCode;
+/**
+ * 生成请求时所需唯一标识码（out_request_no）
+ * @returns {string}
+ */
+function timehash() {
+  const date = new Date();
+  const p = {
+    y: date.getFullYear(),
+    m: `0${date.getMonth() + 1}`.substr(-2),
+    d: `0${date.getDate()}`.substr(-2),
+    h: `0${date.getHours()}`.substr(-2),
+    i: `0${date.getMinutes()}`.substr(-2),
+    s: `0${date.getSeconds()}`.substr(-2)
+  };
+  return `${p.y}${p.m}${p.d}${p.h}${p.i}${p.s}${hash()}`;
+}
+
+export { hash, timehash };

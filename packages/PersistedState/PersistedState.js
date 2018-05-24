@@ -1,4 +1,7 @@
-import merge from 'deepmerge';
+/**
+ * @type {{all:Function}}
+ */
+import deepmerge from 'deepmerge';
 import LocalStorage from './storages/local';
 import SessionStorage from './storages/session';
 import MemoryStorage from './storages/memory';
@@ -22,7 +25,7 @@ class PersistedState {
    * @param {{store:Vuex, expire:Number, storage?:StateStorage}} [options] 全局配置，可通过私有配置进行覆盖
    */
   constructor(options) {
-    this._options = merge({}, this._defaultOptions, options);
+    this._options = deepmerge.all([{}, this._defaultOptions, options || {}]);
   }
 
   /**

@@ -4,7 +4,7 @@ const clean = require('gulp-clean');
 const rm = require('rimraf');
 const chalk = require('chalk');
 
-gulp.task('clean:last', function(cb) {
+gulp.task('clean', function(cb) {
   rm('lib', err => {
     if (err) throw err;
     console.log(chalk.cyan('  All old files deleted.\n'));
@@ -26,4 +26,4 @@ gulp.task('babel', function() {
   ).pipe(gulp.dest('lib'));
 });
 
-gulp.task('default', ['clean:last', 'babel']);
+gulp.task('default', ['clean', 'babel']);

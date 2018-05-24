@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { BlobFile, MIME } from '../../packages/BlobFile/index';
+import { BlobFile, MIME } from '../../packages';
 
 export default {
   name: 'ExcelTest',

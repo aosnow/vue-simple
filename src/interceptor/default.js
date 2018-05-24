@@ -1,4 +1,5 @@
 import router from '../router';
+import { Http } from '../../packages';
 
 export default [
   // 注册 request 拦截器范例
@@ -26,6 +27,10 @@ export default [
       // 必须返回原数据，否则正常请求之处无法取得该返回数据
       return response;
     },
-    error: null // 缺省参数，使用默认错误处理函数
+    error(error) {
+      const errInfo = Http.errorInfo(error);
+      console.warn('Http Error Info:', error, errInfo);
+      // return error;
+    }
   }
 ];
