@@ -76,6 +76,13 @@ declare function PersistedAction( { commit }, { type, getData, force } ):Promise
 declare function PersistedPlugin( store:any ):void;
 
 /**
+ * 针对当前应用设置唯一识别码
+ * <p>针对不同的应用起到“作用域”的作用，以避免应用与应用之间的数据混乱问题</p>
+ * @param {string} code 唯一码（长度必须大于5位，且不能是全字母或全数字），如“F@K%$JD&LF”
+ */
+declare function setUnique( code:string ):void;
+
+/**
  * 持久化数据清除器
  */
 declare namespace PersistedClear
@@ -94,6 +101,7 @@ declare namespace PersistedRestore
 
 export {
   PersistedState,
+  setUnique,
   PersistedClear,
   PersistedRestore,
   PersistedAction,

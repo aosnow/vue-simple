@@ -8,6 +8,69 @@
 npm i vue-simple -S
 ```
 
+## "缓存作用域"的使用
+在`storage`的基础上设计`“root”`和`“app作用域”`，主要目的在于避免多个应用使用相同的`“key”`进行存取，会造成数据覆盖问题。
+
+使用方法非常简单，只需要在使用存取业务之前，先为整个app设置一个唯一的识别码（推荐使用该应用的域名）：
+```
+import { setUnique } from 'vue-simple';
+
+
+/*
+setUnique('#A@*#FF@P#C)&^'); // 正确
+setUnique('sliver box'); // 错误：不能包含空白字符
+setUnique('abc'); // 错误：长度必须大于等于6位
+setUnique('abc123'); // 警告：过于简单，推荐包含字母、数字、符号
+*/
+setUnique('abc.com'); // 正确
+
+// 可以设置为 null 或 'root' 回到顶级“root”作用域：
+setUnique(); // 正确
+setUnique(null); // 正确
+setUnique(''); // 正确
+setUnique('root'); // 正确
+```
+
+## HTTP错误信息的拦截处理
+一般使用 `axios` 的 `response` 拦截处理该 HTTP 错误信息：
+```
+import { Http } from 'vue-simple';
+
+error(error) {
+  const errInfo = Http.errorInfo(error);
+  MessageBox.alert(errInfo, '提示', { type: 'warning', showClose: false });
+
+  // 若需要将此错误继续抛出给 $api.post().catch() 进行捕获，则将 error 进行 return
+  // 此处可以返回任何数据给 catch() 进行捕获，若不显示 return，则错误处理和请求都在此处终止
+  // $api.post() 将不需要再另行处理发生错误时的逻辑，此逻辑已经被封装到 vue-simple 的 API 模块中
+  return error;
+}
+```
+
+该`vue-simple`包含一套自定义的`HttpErrorInfo`配置:
+```
+const HttpErrorInfo = {
+  default: '发生未知错误',
+  network: '网络异常或服务器连接失败',
+  aborted: '请求被中止',
+  timeout: '请求服务器响应超时，请求已经被中断',
+
+  // 3xx: 重定向，需要进一步的操作以完成请求
+  301: '请求的资源已被永久的移动到新URI',
+  302: '请求的资源临时被移动，请重新发送请求',
+  ...
+  404: 'Not Found，所请求页面不存在',
+  ...
+ }
+```
+也可以通过以下方法实现自定义覆盖：
+```
+import { HttpErrorInfo } from 'vue-simple';
+
+HttpErrorInfo.merge({404:'page not found.'});
+```
+
+
 ## Vue 插件
 - **Api 通信模块**
 基于`axios`库，实现通信模块的封装，业务数据存放于`request body`，而请求参数存放于`headers`或`url params`
@@ -20,6 +83,7 @@ npm i vue-simple -S
 数据持久化方案支持，支持`“localStorage、sessionStorage、memory”`三种缓存引擎（通过`force`参数，可实现本地数据缓存与state之间的存储和恢复需求）
 
 ## Update record
+- v1.2.1  优化 PersistedState 存取机制，设计“缓存作用域”概念，将各个应用之间的缓存数据进行独立以避免数据混乱或者冲突问题
 - v1.2.0  优化 Axios.request 错误捕获处理逻辑，内置 HttpErrorInfo 错误信息集合。增加大量工具 http、utils、hash、object
 - v1.1.20 优化相关细节
 - v1.1.19 完善对应 types 声明文件包，优化细节

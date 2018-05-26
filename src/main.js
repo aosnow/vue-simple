@@ -9,11 +9,11 @@ import { ApiInstaller } from '../packages/api/Api';
 import interceptors from './interceptor';
 import { LocalConf, SrvConf } from './conf/axios.conf';
 
-import { HttpErrorInfo } from '../packages';
-
-console.warn(JSON.stringify(HttpErrorInfo['404']));
-HttpErrorInfo.merge({ 404: 'Page not found.' });
-console.warn(JSON.stringify(HttpErrorInfo['404']));
+// import { HttpErrorInfo } from '../packages';
+//
+// console.warn(JSON.stringify(HttpErrorInfo['404']));
+// HttpErrorInfo.merge({ 404: 'Page not found.' });
+// console.warn(JSON.stringify(HttpErrorInfo['404']));
 
 Vue.config.productionTip = false;
 

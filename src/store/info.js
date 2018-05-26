@@ -4,7 +4,7 @@ import { PersistedAction, PersistedConfig, STORAGE_TYPE } from '../../packages/P
 // 注册需要缓存的 mutation
 // PersistedConfig.add({ type: 'info/save', storage: STORAGE_TYPE.sessionStorage });
 PersistedConfig.batch([
-  { type: 'info/save', storage: STORAGE_TYPE.memory, expire: 0 }
+  { type: 'info/save', storage: STORAGE_TYPE.sessionStorage, expire: 0 }
 ]);
 
 const State = {
@@ -40,7 +40,7 @@ const Actions = {
   fetch({ dispatch }, data) {
     return dispatch('persist', {
       type: 'info/save',
-      force: true,
+      // force: true,
       getData() {
         // 该方法淘汰
         // return Vue.$api.post('/api.php', null);

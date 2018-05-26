@@ -5,6 +5,15 @@ import STORAGE_TYPE from './storageType';
 const $persistedState = new PersistedState();
 
 /**
+ * 针对当前应用设置唯一识别码
+ * <p>针对不同的应用起到“作用域”的作用，以避免应用与应用之间的数据混乱问题</p>
+ * @param {string} code 唯一码（长度必须大于5位，且不能是全字母或全数字），如“F@K%$JD&LF”，或者应用的网站域名“abc.com”
+ */
+function setUnique(code) {
+  $persistedState.unique = code;
+}
+
+/**
  * 只有注册的 key 才会进行缓存
  */
 const PersistedConfig = {
@@ -189,6 +198,7 @@ const PersistedRestore = {
 
 export {
   PersistedState,
+  setUnique,
   PersistedClear,
   PersistedRestore,
   PersistedAction,

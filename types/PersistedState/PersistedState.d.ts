@@ -13,6 +13,12 @@ declare interface PersistedState
   new ( options:any );
 
   /**
+   * 唯一识别码
+   * <p>针对不同的应用起到“作用域”的作用，以避免应用与应用之间的数据混乱问题</p>
+   */
+  unique:string;
+
+  /**
    * 检测获取最终可用的 storage 引擎
    * @param {String} [storageType] 存储引擎类型
    * @returns {*|{type, storage, getItem, setItem, removeItem, clear}|Map|Storage|StorageEvent|boolean}
@@ -48,10 +54,9 @@ declare interface PersistedState
   /**
    * 解析真实 key
    * @param key
-   * @param storage?
    * @return {String}
    */
-  realKey( key:string, storage?:any ):string;
+  realKey( key:string ):string;
 }
 
 export default PersistedState;

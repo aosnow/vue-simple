@@ -15,6 +15,7 @@ module.exports = {
         // target: 'http://test.api.blibao.com', // 外网 API
         target: 'http://127.0.0.1/bcs', // HOME本地测试API
         // target: 'http://172.16.6.1:8080', // 公司本地网关地址
+        // target: 'http://172.16.8.6:8080', // 报表测试网关地址
         // target: 'http://192.168.10.73:6001',// 海梁个人地址：测文件操作
         changeOrigin: true,
         pathRewrite: {
