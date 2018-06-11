@@ -61,7 +61,7 @@ module.exports = {
     // 关闭switch/default检测
     'default-case': 'off',
     // 是否允许空语句块
-    'no-empty': ['error', { "allowEmptyCatch": true }],
+    'no-empty': ['error', { 'allowEmptyCatch': true }],
     // 禁止出现未使用的表达式
     'no-unused-expressions': 'off',
     // 禁止变量和方法的前置下划线，类定义私有成员要用到
@@ -83,12 +83,16 @@ module.exports = {
     // 匿名函数是否需要规定函数名
     'func-names': ['error', 'as-needed'],
     // 大括号的换行风格
-    'brace-style': ['error', 'stroustrup', { "allowSingleLine": true }],
+    'brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],
     // 当存在更简单的三元运算写法时，是否简化如：“x ? x : ''”开启时需要简化为 “x || ''”
     'no-unneeded-ternary': ['error', { 'defaultAssignment': true }],
     // 属性访问时用 . 还是 []，允许关键字
     'dot-notation': 'off',
     // 是否强制要求函数统一 return value 格式
-    'consistent-return': 'off'
+    'consistent-return': 'off',
+    // 是否提示优化 \ 的使用
+    'no-useless-escape': 'off',
+    // 是否要求变量提前声明
+    'no-use-before-define': ['error', { 'functions': false, 'classes': false }]
   }
 };

@@ -16,7 +16,6 @@ const ApiConf = {
     // 登录接口
     // --------------------------------------------------
     login: '/login' // post
-
   },
   shop: {
     // getway 网关子系统名称
@@ -36,6 +35,10 @@ const ApiConf = {
     getRevenueList: '/revenueStatistics/findRevenueStatistics', // 营收统计
     getRevenueShopList: '/revenueStatistics/findShopRevenueStatistics', // 门店营收统计
     getRevenueTimeList: '/revenueStatistics/findShopTimeslotRevenueStatistics' // 门店时间段营收统计
+  },
+  config: {
+    $getway: 'config',
+    upload: '/img/uploadImgFile' // 文件上传: post
   }
 };
 

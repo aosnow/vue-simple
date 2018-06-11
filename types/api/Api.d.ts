@@ -132,3 +132,8 @@ export interface ApiInstaller
   ( Vue:Vue, config:AxiosRequestConfig ):any;
 }
 
+export interface Vue{
+  // Api 工具类实例
+  readonly $api;
+}
+

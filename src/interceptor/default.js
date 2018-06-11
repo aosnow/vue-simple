@@ -6,7 +6,7 @@ export default [
   {
     type: 'request',
     interceptor(config) {
-      console.warn('request.interceptor:', config);
+      // console.warn('request.interceptor:', config);
 
       // 必须返回原配置，否则请求将意外中断
       return config;
@@ -18,7 +18,7 @@ export default [
   {
     type: 'response',
     interceptor(response) {
-      console.warn('response.interceptor:', response);
+      // console.warn('response.interceptor:', response);
 
       if (response.data && parseInt(response.data.code, 10) === 40003) {
         router.push({ path: '/login' });

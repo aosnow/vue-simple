@@ -5,7 +5,7 @@
 <template>
   <div>
     <ul class="menu-list">
-      <li v-for="(item,index) in pages" :key="index">
+      <li v-for="(item,index) in pages" :multiple="'multiple'" :accept="'image/*'" :key="index">
         <router-link :to="{path:item.path}">{{item.meta.title}}</router-link>
       </li>
     </ul>
@@ -31,6 +31,9 @@ export default {
   //     console.warn('created:', this.router);
   //   });
   // },
+  created() {
+    console.warn(this.$children);
+  },
   computed: {
     pages() {
       const list = this.$router.options.routes.filter(item => item.component);
@@ -46,8 +49,8 @@ export default {
 .menu-list{
 
   li{
-    padding : 8px 15px;
-    float   : left;
+    padding: 8px 15px;
+    float: left;
   }
 }
 </style>

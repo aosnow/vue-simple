@@ -75,7 +75,6 @@ class PersistedState {
    */
   constructor(options) {
     this[$options] = deepmerge.all([{}, this[$defaultOptions], options || {}]);
-    console.warn(this[$defaultOptions], this[$options], this[$unique]);
   }
 
   /**

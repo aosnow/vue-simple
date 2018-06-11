@@ -1,6 +1,6 @@
 {
   "name": "vue-simple",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Use Vue in the simplest and easiest way, contain more than one of plugins and other to do that, i hope you will like it.",
   "main": "./lib/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "cross-env NODE_ENV=production node build/build.js",
     "lib": "cross-env NODE_ENV=production node build/build-lib.js",
-    "pub": "gulp && npm publish"
+    "pub": "rimraf lib && gulp && npm publish"
   },
   "author": "aosnow@yeah.net（The silver box technology Co. Ltd.）",
   "license": "MIT",
@@ -38,6 +38,7 @@
   "sideEffects": false,
   "dependencies": {
     "axios": "^0.18.0",
+    "cropperjs": "^1.4.0",
     "deepmerge": "^2.1.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",

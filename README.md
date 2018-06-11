@@ -8,6 +8,37 @@
 npm i vue-simple -S
 ```
 
+## 文件选择器指令
+该指令被封装成插件形式提供，使用方法如下：
+```
+import Vue from 'vue';
+import { readfile, FileSelector } from 'vue-simple';
+
+Vue.use(FileSelector);
+```
+
+开启`<div>`接受拖放文件支持：
+```
+<div class="dataset" :class="{enter:isDragEnter}"
+     v-file-selector="{type:'drag',multiple:true,accept: 'image/*'}"
+     @file-changed="fileChangedFromBinder"
+     @drag-enter="dragenter"
+     @drag-leave="dragleave">
+  文件选择测试
+</div>
+```
+
+让普通按钮具备文件选择功能：
+```
+<button v-file-selector="{accept: 'image/*'}" @file-changed="fileChangedFromBinder">点击上传</button>
+
+fileChangedFromBinder(files) {
+  // 应用所选择的文件
+  this.setFiles(files);
+}
+```
+
+
 ## "缓存作用域"的使用
 在`storage`的基础上设计`“root”`和`“app作用域”`，主要目的在于避免多个应用使用相同的`“key”`进行存取，会造成数据覆盖问题。
 
@@ -83,6 +114,7 @@ HttpErrorInfo.merge({404:'page not found.'});
 数据持久化方案支持，支持`“localStorage、sessionStorage、memory”`三种缓存引擎（通过`force`参数，可实现本地数据缓存与state之间的存储和恢复需求）
 
 ## Update record
+- v1.2.2  增加文件上传组件支持 `packages/upload`，支持文件选择和拖放文件
 - v1.2.1  优化 PersistedState 存取机制，设计“缓存作用域”概念，将各个应用之间的缓存数据进行独立以避免数据混乱或者冲突问题
 - v1.2.0  优化 Axios.request 错误捕获处理逻辑，内置 HttpErrorInfo 错误信息集合。增加大量工具 http、utils、hash、object
 - v1.1.20 优化相关细节
@@ -95,4 +127,4 @@ HttpErrorInfo.merge({404:'page not found.'});
 - v1.1.13 增加`PersistedConfig`注册时过期参数`expire`(单位：秒)支持，支持各引擎以周期性的自动请求新的数据
 - v1.1.12 `PersistedAction` 增加 `force` 选项支持，设置是否强制重新请求，以便于重写新的数据（主要应用于本地数据包装的存储和恢复，如搜索结果缓存等）
 - v1.1.11 优化 `request body` 处理逻辑，只对 `application/json` 进行处理
-- v1.1.5  增加 `packages/plugins/PersistedState` 数据持久化解决方案，优化 API 模块
+- v1.1.5  增加 `packages/PersistedState` 数据持久化解决方案，优化 API 模块

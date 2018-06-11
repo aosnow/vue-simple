@@ -31,3 +31,10 @@ export {
   // http
   Http, HttpErrorInfo
 } from './http';
+
+export interface Vue{
+  // 事件参数声明
+  readonly $event;
+}
+
+export * from './upload';

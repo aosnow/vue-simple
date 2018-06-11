@@ -5,7 +5,7 @@
  * @type {{name : string, author : string, company : string}}
  */
 const projectConfig = {
-	name: '银盒宝成 Web-UI 组件库',
+	name: '银盒宝成开发框架',
 	author: 'Aosnow - 前端组',
 	company: '杭州银盒宝成科技有限公司'
 };

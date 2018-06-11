@@ -109,16 +109,27 @@ class Api {
     // 通过URL附加参数禁用浏览器缓存特性
     if (this._conf['noCache']) {
       conf.params = conf.params || {};
-      conf.params['timestamp'] = `?${hash()}`;
+      conf.params['timestamp'] = `${hash()}`;
     }
 
-    // 统一请求 API 接口提交数据结构规范（只处理 POST，GET 交给 params）
+    // `data` 是作为请求主体被发送的数据
+    // 必须是以下类型之一：
+    // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
+    // - 浏览器专属：FormData, File, Blob
+    // - Node 专属： Stream
     if (conf.data && typeof conf.data !== 'string') {
-      // 根据 content-type 进行对应的数据转换
-      const contentType = this._axios.defaults.headers['Content-Type'];
+      switch (conf.data.toString()) {
+        case '[object FormData]': {
+          break;
+        }
+        default: {
+          // 默认情况下将整个 Request Body 转换成 JSON 结构
+          const contentType = this._axios.defaults.headers['Content-Type'];
 
-      if (/^application\/json/ig.test(contentType)) {
-        conf.data = JSON.stringify(conf.data);
+          if (/^application\/json/ig.test(contentType)) {
+            conf.data = JSON.stringify(conf.data);
+          }
+        }
       }
     }
 
@@ -149,18 +160,6 @@ class Api {
         reject(error);
       });
     });
-  }
-
-  /**
-   * 执行指请求操作
-   * @param requests 多个请求对象的数组，可以通过 vm.$axios.get 或者 vm.$axios.post 进行构建
-   * @returns {Promise|null} 当参数不合法时，将返回 null，反之返回批量逻辑的 Promise 对象
-   */
-  all(requests) {
-    if (!Array.isArray(requests)) {
-      throw new Error('axios.all: the parameter error in this method');
-    }
-    return this._axios.all(requests);
   }
 
   /**
@@ -216,12 +215,24 @@ class Api {
 }
 
 /**
+ * 执行指请求操作
+ * @param requests 多个请求对象的数组，可以通过 vm.$axios.get 或者 vm.$axios.post 进行构建
+ * @returns {Promise|null} 当参数不合法时，将返回 null，反之返回批量逻辑的 Promise 对象
+ */
+Api.prototype.all = requests => {
+  if (!Array.isArray(requests)) {
+    throw new Error('axios.all: the parameter error in this method');
+  }
+  return Axios.all(requests);
+};
+
+/**
  * 安装 API 通信插件
  * @param {Vue} Vue Vue全局对象（window.Vue）
  * @param {{srv,local}} config 关于 axios 的默认配置
  */
 function ApiInstaller(Vue, config) {
-  Vue['$api'] = new Api(config);
+  Vue.$api = new Api(config);
 }
 
 export { Api, ApiInstaller };

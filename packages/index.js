@@ -31,3 +31,6 @@ export {
   // http
   Http, HttpErrorInfo
 } from './http';
+
+// upload
+export * from './upload';
