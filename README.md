@@ -114,6 +114,7 @@ HttpErrorInfo.merge({404:'page not found.'});
 数据持久化方案支持，支持`“localStorage、sessionStorage、memory”`三种缓存引擎（通过`force`参数，可实现本地数据缓存与state之间的存储和恢复需求）
 
 ## Update record
+- v1.2.3  优化细节，修正关于工具引用问题
 - v1.2.2  增加文件上传组件支持 `packages/upload`，支持文件选择和拖放文件
 - v1.2.1  优化 PersistedState 存取机制，设计“缓存作用域”概念，将各个应用之间的缓存数据进行独立以避免数据混乱或者冲突问题
 - v1.2.0  优化 Axios.request 错误捕获处理逻辑，内置 HttpErrorInfo 错误信息集合。增加大量工具 http、utils、hash、object

@@ -1,4 +1,4 @@
-import * as utils from 'packages/utils';
+import * as utils from '../../utils';
 
 /**
  * 给指定元素绑定文件拖拽事件
