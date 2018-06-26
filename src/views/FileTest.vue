@@ -73,17 +73,19 @@ export default {
 
     // 裁剪后的返回新图片数据（blob）
     croppedHandler(blob) {
-      const fileName = this.cropfile.src.name;
-      const fileProperty = {
-        type: blob.type,
-        lastModified: new Date().getTime()
-      };
+      if (blob) {
+        const fileName = this.cropfile.src.name;
+        const fileProperty = {
+          type: blob.type,
+          lastModified: new Date().getTime()
+        };
 
-      // 根据裁剪结果生成新的虚拟文件
-      this.cropfile.src = new File([blob], fileName, fileProperty);
+        // 根据裁剪结果生成新的虚拟文件
+        this.cropfile.src = new File([blob], fileName, fileProperty);
 
-      // 预览新结果
-      this.preload(this.cropfile);
+        // 预览新结果
+        this.preload(this.cropfile);
+      }
 
       // 置空当前裁剪的目标图片
       this.cropfile = null;

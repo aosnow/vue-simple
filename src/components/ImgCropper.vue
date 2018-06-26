@@ -462,6 +462,7 @@ export default {
         case 'quit': {
           this.destroy();
           this.cropper = null;
+          this.$emit('cropped', null);
           break;
         }
       }
