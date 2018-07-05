@@ -36,7 +36,7 @@ declare namespace ReadType
 /**
  * 异步读取图片数据为 base64
  * @param {File} rawFile
- * @param {String} type
+ * @param {String} [type]
  * @return
  */
 declare function readfile( rawFile:any, type:string ):Promise;

@@ -17,7 +17,7 @@ const ReadType = {
 /**
  * 异步读取图片数据为 base64
  * @param {File} rawFile
- * @param {String} type
+ * @param {String} [type]
  */
 const readfile = (rawFile, type = ReadType.DataURL) => new Promise((resolve, reject) => {
   if (rawFile.toString() !== '[object File]') {

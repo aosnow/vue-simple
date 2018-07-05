@@ -2,13 +2,9 @@
 //
 // index.d
 // author: 喵大斯( h5devs.com/h5devs.net )
-// created: 2018/5/20
+// created: 2018/7/5
 // copyright (c) 2015 喵大斯( aosnow@yeah.net )
 //
 // ------------------------------------------------------------------------------
 
-import MIME from './mimetype';
-import { BlobFile, Endings } from './BlobFile';
-import Downloader from './Downloader';
-
-export { MIME, BlobFile, Endings, Downloader };
+export { loadImageBase64, getBase64FromImage, downloadImageBase64 } from './loader';

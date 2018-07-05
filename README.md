@@ -114,6 +114,7 @@ HttpErrorInfo.merge({404:'page not found.'});
 数据持久化方案支持，支持`“localStorage、sessionStorage、memory”`三种缓存引擎（通过`force`参数，可实现本地数据缓存与state之间的存储和恢复需求）
 
 ## Update record
+- v1.2.4  增加加载远程图片（loadImageBase64）为 Base64，并提供下载功能（downloadImageBase64）
 - v1.2.3  优化细节，修正关于工具引用问题
 - v1.2.2  增加文件上传组件支持 `packages/upload`，支持文件选择和拖放文件
 - v1.2.1  优化 PersistedState 存取机制，设计“缓存作用域”概念，将各个应用之间的缓存数据进行独立以避免数据混乱或者冲突问题

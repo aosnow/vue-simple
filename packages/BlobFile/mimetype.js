@@ -18,12 +18,13 @@ const MIME = {
 
   jpg: 'image/jpeg',
   bmp: 'image/bmp',
+  png: 'image/png',
   ico: 'image/x-icon',
 
   txt: 'text/plain',
   css: 'text/css',
   html: 'text/html',
-  json: 'application/x-javascript'
+  json: 'application/json'
 };
 
 export default MIME;

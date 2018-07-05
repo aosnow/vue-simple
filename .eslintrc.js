@@ -34,6 +34,8 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {
       optionalDependencies: ['test/unit/index.js']
     }],
+    // 语句块内的前后是否需要空白行隔开
+    'padded-blocks': 'off',
     // 强制驼峰法命名规则
     'camelcase': 'off',
     // Object 属性是否必须在新的一行书写
@@ -58,6 +60,10 @@ module.exports = {
     'prefer-const': 'off',
     // 关闭推荐模板字符串
     'prefer-template': 'off',
+    // 推荐 promise/reject 只能以 Error 作为参数
+    'prefer-promise-reject-errors': 'off',
+    // 是否限制不能使用JS全局环境变量
+    'no-restricted-globals': 'off',
     // 关闭switch/default检测
     'default-case': 'off',
     // 是否允许空语句块
