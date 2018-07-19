@@ -39,7 +39,7 @@ declare namespace ReadType
  * @param {String} [type]
  * @return
  */
-declare function readfile( rawFile:any, type:string ):Promise;
+declare function readfile( rawFile:any, type?:string ):Promise;
 
 declare function FileSelector( Vue );
 

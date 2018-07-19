@@ -30,10 +30,18 @@ function loadImageBase64(url) {
   image.crossOrigin = 'anonymous';
   image.src = url;
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
+
+    // 加载成功
     image.onload = () => {
       resolve(getBase64FromImage(image)); // 将base64传给done上传处理
     };
+
+    // 加载失败
+    image.onerror = error => {
+      reject(error);
+    };
+
   });
 
 }

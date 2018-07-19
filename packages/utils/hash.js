@@ -1,5 +1,10 @@
 const I64BIT_TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('');
 
+/**
+ * 根据指定内容生成对应哈希编码
+ * @param {String} [input]
+ * @return {String}
+ */
 function hash(input) {
   let hv = 0;
   let src = input;

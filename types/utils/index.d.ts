@@ -22,4 +22,4 @@ export {
   merge
 } from './utils';
 
-export { base64toBlob, base64toFile } from './base64';
+export * from './base64';

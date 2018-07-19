@@ -46,4 +46,23 @@ function base64toFile(base64, filename) {
   return new File([u8arr], fn, { type: mime });
 }
 
-export { base64toBlob, base64toFile };
+/**
+ * 检测指定的字符串是否为 Base64 图片编码
+ * @param {String} value Base64 图片编码
+ */
+function isBase64DataURL(value) {
+  // data:image/jpeg;base64,...
+  /*
+   jpg: 'image/jpeg',
+   bmp: 'image/bmp',
+   png: 'image/png', 或 'image/x-png'
+   gif: 'image/gif',
+   ico: 'image/x-icon',
+   svg: 'image/svg+xml'
+   tiff: 'image/tiff'
+   */
+  const reg = /^data:image\/[^;]+;base64/i;
+  return reg.test(value);
+}
+
+export { base64toBlob, base64toFile, isBase64DataURL };

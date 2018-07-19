@@ -12,7 +12,7 @@
  * @param {String} base64
  * @returns {Blob}
  */
-declare function base64toBlob( base64 );
+declare function base64toBlob( base64:string );
 
 /**
  * 将图片 Base64 转换成 Blob 对象
@@ -20,6 +20,12 @@ declare function base64toBlob( base64 );
  * @param {String} [filename]
  * @returns {File}
  */
-declare function base64toFile( base64, filename );
+declare function base64toFile( base64:string, filename?:string );
 
-export { base64toBlob, base64toFile };
+/**
+ * 检测指定的字符串是否为 Base64 图片编码
+ * @param {String} value Base64 图片编码
+ */
+function isBase64DataURL(value:string)
+
+export { base64toBlob, base64toFile, isBase64DataURL };
