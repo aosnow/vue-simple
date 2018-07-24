@@ -26,6 +26,9 @@ const Http = {
             return HttpErrorInfo.network;
           }
         }
+        else if (/^cancel/i.test(error.toString())) {
+          return error.message || HttpErrorInfo.cancel;
+        }
 
         return HttpErrorInfo.default;
       }

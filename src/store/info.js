@@ -64,6 +64,22 @@ const Actions = {
       }
     });
   },
+  cancel({ commit }, params) {
+    return new Promise((resolve, reject) => {
+      Vue.$api.post('/api.php', params, { timeout: 10000 }).then(res => {
+        commit('save', res);
+
+        // 对数据进行任意解析、运算、过滤逻辑
+        res = res.data;
+
+        // 将最终结果数据抛出
+        resolve(res);
+      }).catch(reason => {
+        reject(reason);
+      });
+    });
+  },
+
   excel({ commit }, params) {
     return new Promise((resolve, reject) => {
       Vue.$api.post('goods/category/exportCategory', params, {

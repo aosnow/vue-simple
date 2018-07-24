@@ -3,6 +3,7 @@
  */
 const HttpErrorInfo = {
   default: '发生未知错误',
+  cancel: '请求已取消',
   network: '网络异常或服务器连接失败',
   aborted: '请求被中止',
   timeout: '请求服务器响应超时，请求已经被中断',

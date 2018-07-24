@@ -1,3 +1,4 @@
+import HttpErrorInfo from 'packages/http/HttpErrorInfo';
 import router from '../router';
 import { Http } from '../../packages';
 
@@ -30,7 +31,12 @@ export default [
     error(error) {
       const errInfo = Http.errorInfo(error);
       console.warn('Http Error Info:', error, errInfo);
-      // return error;
+
+      // 若错误为“请求已取消”，则无须向下传递到具体的请求catch中处理
+      if (!/^cancel/i.test(error.toString())) {
+        // return error;
+      }
+
     }
   }
 ];

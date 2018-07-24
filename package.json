@@ -1,6 +1,6 @@
 {
   "name": "vue-simple",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Use Vue in the simplest and easiest way, contain more than one of plugins and other to do that, i hope you will like it.",
   "main": "./lib/index.js",
   "scripts": {

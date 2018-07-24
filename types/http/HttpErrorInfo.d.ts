@@ -4,6 +4,7 @@
 declare const HttpErrorInfo:{
 
   default:string;
+  cancel:string;
   network:string;
   aborted:string;
   timeout:string;

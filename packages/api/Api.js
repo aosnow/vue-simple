@@ -7,6 +7,9 @@ class Api {
   _conf = null;
   _interceptor = null;
 
+  _CancelToken = Axios.CancelToken;
+  _source = this._CancelToken.source();
+
   /**
    * 后端接口需求 token 验证串
    * @type {string|null}
@@ -75,7 +78,7 @@ class Api {
 
   /**
    * 发送 axios 请求
-   * @param {{ method:String, url:String, params?:{}, data?:{} }} conf 单个请求配置如“{ method:'', url:'', params:{}, data:{} }”
+   * @param {{ method:String, url:String, params?:{}, data?:{}, cancelToken }} conf 单个请求配置如“{ method:'', url:'', params:{}, data:{} }”
    * @returns {Promise}
    */
   request(conf) {
@@ -138,6 +141,9 @@ class Api {
     this._axios.defaults.headers['invoke_source'] = this._conf.srv.invoke_source;
     this._axios.defaults.headers['out_request_no'] = hash();
 
+    // cancelToken: source.token
+    conf.cancelToken = this._source.token;
+
     // return this._axios.request({
     //   method: conf.method,
     //   url: conf.url,
@@ -160,6 +166,17 @@ class Api {
         reject(error);
       });
     });
+  }
+
+  /**
+   * 取消请求（message 参数是可选的）
+   * @param {String} [message]
+   */
+  cancel(message) {
+    this._source.cancel(message);
+
+    // 重新生成新的 token，否则后续请求将被继续直接取消
+    this._source = this._CancelToken.source();
   }
 
   /**

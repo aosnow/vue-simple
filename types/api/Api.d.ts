@@ -81,6 +81,12 @@ export declare interface Api
   request( conf:AxiosRequestConfig ):AxiosPromise;
 
   /**
+   * 取消请求（message 参数是可选的）
+   * @param {String} [message]
+   */
+  cancel(message?:string):void;
+
+  /**
    * 执行指请求操作
    * @param requests 多个请求对象的数组，可以通过 axios.get 或者 axios.post 进行构建
    * @returns {Promise|null} 当参数不合法时，将返回 null，反之返回批量逻辑的 Promise 对象
