@@ -1,6 +1,5 @@
-import HttpErrorInfo from 'packages/http/HttpErrorInfo';
-import router from '../router';
 import { Http } from '../../packages';
+import router from '../router';
 
 export default [
   // 注册 request 拦截器范例

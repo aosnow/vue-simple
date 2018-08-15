@@ -61,7 +61,7 @@ function isBase64DataURL(value) {
    svg: 'image/svg+xml'
    tiff: 'image/tiff'
    */
-  const reg = /^data:image\/[^;]+;base64/i;
+  const reg = /^data:(img|image)\/[^;]+;base64/i;
   return reg.test(value);
 }
 

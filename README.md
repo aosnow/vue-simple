@@ -114,6 +114,7 @@ HttpErrorInfo.merge({404:'page not found.'});
 数据持久化方案支持，支持`“localStorage、sessionStorage、memory”`三种缓存引擎（通过`force`参数，可实现本地数据缓存与state之间的存储和恢复需求）
 
 ## Update Record
+- v1.2.8  修正和完善 Base64 工具方法
 - v1.2.7  Api 增加 cancel() 方法，用以取消未返回的请求。通过“Vue.$api.cancel()”调用，比如在 token 失效时取消后续依赖 token 的请求，阻止频繁弹错误消息
 - v1.2.6  增加 base64 检测函数（isBase64DataURL），用于检测参数是否为 Base64 图片编码
 - v1.2.5  增强 base64 相关工具函数支持，优化细节和完善错误提示
